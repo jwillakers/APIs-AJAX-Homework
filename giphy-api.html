@@ -3,110 +3,41 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Giphy API</title>
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-
+  <title>Better Off Bench Warmers</title>
+  <link rel="stylesheet" type="text/css" href="sports.css">
 </head>
 
 <body>
+<div>
   <div class="container">
-    <h1>Whacky Sport Gifs</h1>
+    <div id = "logo"></div>
+    <h1></h1>
     <br>
     <br>
 
  <!-- area where new sport button shows on page -->
-    <div id="new-btn-here">Buttons</div>
+    <div id="sport-buttons">Sport Buttons here</div>
+    
 
 
      <form id="sports-form">
       
       <label for="sports-input"></label>
-      <input type="text" id="sports-input">
+      <input type="text" id="sports-input"><br>
+      
    
-    <!-- Button triggers new movie to be added -->
-      <input id="addSportBtn" type="submit" value="Add a Sprort">
+    <!-- Button triggers new sport button to be added -->
+      <input id="addSportBtn" type="submit" value="Add a Sport">
     </form>
   
   <!-- area where Gifs will show on page -->
-    <div id="gifs-here">Gifs</div>
-  
-   <!--!!!!!!!!!!!!!!!!!!!!!!!!Lets make it happen !!!!!!!!!!!!!!!!!!!!!!!-->
+    <div id="sports"></div>
+  </div>
      
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
+   <script src = "sports.js"></script>
+  
 
-// list of sport buttons
-     var sports = ["soccer", "tennis", "golf", "track"];
-
-
-  // deletes the content in the sports-input div so as not to have repeat buttons
-    $("sports-input").empty();
-
-//  <!-- Button triggers AJAX call so images show on page-->
-    $("#addSportBtn").on("click", function(event) {
-       event.preventDefault();
-
-
-
-    // creating variable for API URL. set the limit to 20 images on the page at one time
-    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=sports&limit=20";
-   
-
-    // calling API
-    $.ajax({
-      url:queryURL,
-      method: "GET"
-    })
-
-    // once we get data, run function
-    .done(function(response) {
-
-    // we get the response back which is data which holds the image that will be passed to the imageUrl
-    var imageUrl = response.data.fixed_height_small_still_url;
-    
-    // create empty img tag for each gif
-    var imageDiv = $("<img>");
-
-    // giving the attribute of the gif that gets pulled in
-    imageDiv.attr("src", imageUrl);
-    imageDiv.addClass("pausable");
-    // in case image doesn't come up, "cat image" text will display in it's place
-    imageDiv.attr("alt", "cat image");
-
-    // adds new image to the array
-    $("#gifs-here").append(imageDiv);
-  });
-  });
-
-// the function above adds images when user inputs new sport into the input field, now need to have the button of the sport that was entered into the input appear in the  after user click on "Add Sport"
-      
-      // Function for making new buttons
-      function renderButtons() {
-
- // $("#buttonDiv").empty();
-
-// Loop through the array of sports, then generate buttons for each sport in the array
-       
-        for(var i=0; i<sports.length; i++);
-
-          var addSportBtn = $("<input/>").attr({type: 'button', name:'btn1', value:'addSportBtn'});
-         
-          // @@ something is wrong here
-          addSportBtn.attr("<div class='button'>", sports[i]);
-          $("#addSportBtn").append(addSportBtn);
-
-          $("btn1").click("click", "soccer")
-
-      }
-
-// I could not get the buttons to show in the new-btn-here div
-// also could not get the correct gif to match with what the user inputs
-
-
-
-  </script>
-</div>
 </body>
 
 </html>
